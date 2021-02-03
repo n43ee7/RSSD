@@ -6,3 +6,4 @@ _________________________________________________
 prerequisites:
 pyusb
 libusb
+pyserial
