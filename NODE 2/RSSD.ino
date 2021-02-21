@@ -1,25 +1,28 @@
 /*
 Nabeel Nayyar |             Rover Mavs-2021 |           NODE 2 (Arduino Mega 2560)
 github.com/n43ee7/RSSD/
-========================================================================================
-                                Communication Model
-========================================================================================
+===========================================================================================================
+                                            Communication Model
+===========================================================================================================
 
-      
-                    [000]                    [000]                    [000]
-                Component Identifier        Bit Order 1              Bit Order 2
-      
-         Functions:
-                L13000xx    Sets LED 13 (Onboard or Pin 13) to flicker 'xx' times
-                SI0MSG01    Casts a Serial Message echo of system name
+               
+F)         X        Y        Z    GripperPitchDegrees GripperRotationDegrees FingerDegrees SolenoidState
+V)     [double]  [double]  [double]      [double]                [int]              [int]          [bool]
 
+E)      "0.0000 0.0000 0.0000 0.0000 00000 00000 T"
 
-=========================================================================================
+        Functions:
+                0
+
+==========================================================================================================
 
 Notes:
+[ ] Migrate to Char arrays for preserving SRAM
 SET -> RESET_PIN to LOW for [LOCAL RESET]
 
 */
+
+#include <string.h>
 
 #if defined(__AVR_ATmega2560__)
 
@@ -31,20 +34,34 @@ SET -> RESET_PIN to LOW for [LOCAL RESET]
 #define RESET_PIN  12
 
 // SDV
-#define APPROVAL_CAST "Z99999999" 
+#define APPROVAL_CAST "Z" 
 #define SERIAL_SUCESS_FLICK 10
 #define SERIAL_FAIL_FLICK 100
-#define BUFFER 9                    // 0-8 + /n = 9?
+#define BUFFER 16
+#define RX_FLICK 5
+
+// Arm instance
+typedef struct ArmInstance {
+    double X;
+    double Y;
+    double Z;
+    double GripperPitchDeg;
+    int GripperRotationDeg;
+    int FingerDeg;
+    bool SolenoidState;
+};
 
 void StatusAction(int sequence);
 void connectionInit();
-bool CastComparter(char a[BUFFER], char b[BUFFER]);
+String SerialListener();
+ArmInstance CastReader(String inStr);
 
 void setup() {
-    
+
+      
     digitalWrite(RESET_PIN, HIGH); // Firmware action
     delay(200);    
-
+    
     pinMode(RESET_PIN, OUTPUT);
     pinMode(STATUS_LED, OUTPUT);
     Serial.begin(115200);   // Best reliable buadrate tested
@@ -56,19 +73,14 @@ void setup() {
 }
 
 void loop() {
-    // Communication test
-    char parram[BUFFER];
-
-    if (Serial.available() > 0) {
-        int size = Serial.readBytesUntil('\n', parram, BUFFER);
-        
-        if (parram[0] == 'L') {         // Status Action to LED
-            
-        }
-        if (parram[0] == 'S') {        // Serial echo
-                    
-        }
-    }
+    // Pending latency test for optimization of a robust code.
+    String L; 
+    ArmInstance Arm1;
+    do {
+        L = SerialListener();
+    } while (L == "0");
+    StatusAction(RX_FLICK);
+    Arm1 = CastReader(L); // By now the struct has all the instant Arm Parrameters
 }
 
 void StatusAction(int sequence) {
@@ -83,24 +95,6 @@ void StatusAction(int sequence) {
         digitalWrite(STATUS_LED, LOW);
         delay(50);
     }
-}
-
-bool CastComparter(char a[BUFFER], char b[BUFFER]) {
-
-    // Compares two input character arrays and returns a flag
-    // MOD-A (CHANGE)
-
-    bool flag = false;
-    
-    for (int i = 0; i < BUFFER + 1; i++) {
-
-        if (a[i] == b[i]) {
-            flag = true;
-        }
-    
-    }
-    
-    return flag;
 }
 
 void connectionInit() {
@@ -136,4 +130,33 @@ void connectionInit() {
             }
         }
     }
+}
+
+String SerialListener() {
+    byte icbx;
+    String sdata = "";
+
+    if (Serial.available()) {
+        icbx = Serial.read();
+
+        sdata += (char)icbx; // Typecasting each byte recieved must be okay I bet
+
+        if (icbx == '\r') {  // Command recevied and packed.
+            sdata.trim(); // trimming \r .
+        }
+        return sdata; 
+    }
+    else
+    {
+        return sdata + "0"; // Exception handler
+    }
+}
+
+ArmInstance CastReader(String inStr) {
+    ArmInstance temp;
+    for (size_t i = 0; i < inStr.length(); i++)
+    {
+     // Tokeninze " "
+    }
+    return temp;
 }
