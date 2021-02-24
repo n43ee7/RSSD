@@ -9,8 +9,8 @@ github.com/n43ee7/RSSD/
 F)         X        Y        Z    GripperPitchDegrees GripperRotationDegrees FingerDegrees SolenoidState
 V)     [double]  [double]  [double]      [double]                [int]              [int]          [bool]
 
-E)      "0.0000 0.0000 0.0000 0.0000 00000 00000 T"
-
+E)      "0.0000@0.0000@0.0000@0.0000@00000@00000@T"
+        > Tokenisation with '@' character
         Functions:
                 0
 
@@ -34,7 +34,7 @@ SET -> RESET_PIN to LOW for [LOCAL RESET]
 #define RESET_PIN  12
 
 // SDV
-#define APPROVAL_CAST "Z" 
+#define APPROVAL_CAST "Z"
 #define SERIAL_SUCESS_FLICK 10
 #define SERIAL_FAIL_FLICK 100
 #define BUFFER 16
@@ -66,7 +66,7 @@ void setup() {
     pinMode(STATUS_LED, OUTPUT);
     Serial.begin(115200);   // Best reliable buadrate tested
     
-    Serial.println("[!]" + (String)BOARD_NAME + "Armed");
+    Serial.println("[!]" + (String)BOARD_NAME + " Armed");
     connectionInit();   // Starts establishing connection with peer
 
     digitalWrite(STATUS_LED, LOW);
@@ -142,21 +142,32 @@ String SerialListener() {
         sdata += (char)icbx; // Typecasting each byte recieved must be okay I bet
 
         if (icbx == '\r') {  // Command recevied and packed.
-            sdata.trim(); // trimming \r .
+            sdata.trim(); // trimming \r upon serial success
         }
         return sdata; 
     }
     else
     {
-        return sdata + "0"; // Exception handler
+        return sdata + "#"; // Exception handler
     }
 }
 
-ArmInstance CastReader(String inStr) {
+ArmInstance CastReader(String inStr) { // 00000@00000@0000@0000
     ArmInstance temp;
-    for (size_t i = 0; i < inStr.length(); i++)
-    {
-     // Tokeninze " "
+    char c_inStr[]= "";
+    inStr.toCharArray(c_inStr,inStr.length());
+    
+    char *strings[BUFFER];
+    char *ptr = NULL;
+    byte index = 0;
+
+    ptr = strtok(c_inStr, "@");  // takes a list of delimiters
+    while (ptr != NULL){
+
+        strings[index] = ptr;
+        index++;
+        ptr = strtok(NULL, "@");  // takes a list of delimiters
     }
     return temp;
+    
 }
