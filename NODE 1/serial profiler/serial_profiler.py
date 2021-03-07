@@ -1,60 +1,150 @@
-from serial import *
+import time
+import threading
 from tkinter import *
+from tkinter import ttk
+from tkinter.ttk import *
+import serial
+
+serial_data = ''
+filter_data = ''
+update_period = 5
+serial_object = None
+gui = Tk()
+gui.title("UTA Team Rover | Serial Profiler")
 
 
-# make a TkInter Window
-root = Tk()
-root.wm_title("Rover Serial Profiler")
+def connect():
+    version_ = button_var.get()
+    print(version_)
+    global serial_object
+    port = port_entry.get()
+    baud = baud_entry.get()
 
-serialPort = "COM10"
-baudRate = 9600
-ser = Serial(serialPort , baudRate, timeout=0, writeTimeout=0) #ensure non-blocking
+    try:
+        if version_ == 2:
+            try:
+                serial_object = serial.Serial('/dev/tty' + str(port), baud)
 
-# make a scrollbar
-scrollbar = Scrollbar(root)
-scrollbar.pack(side=RIGHT, fill=Y)
+            except:
+                print("Cant Open Specified Port")
 
-# make a text box to put the serial output
-log = Text ( root, width=30, height=30, takefocus=0)
-log.pack()
+        elif version_ == 1:
+            serial_object = serial.Serial('COM' + str(port), baud)
 
-# attach text box to scrollbar
-log.config(yscrollcommand=scrollbar.set)
-scrollbar.config(command=log.yview)
+    except ValueError:
+        print("Enter Baud and Port")
+        return
 
-#make our own buffer
-#useful for parsing commands
-#Serial.readline seems unreliable at times too
-serBuffer = ""
-
-def readSerial():
-    while True:
-        c = ser.read() # attempt to read a character from Serial
-
-        #was anything read?
-        if len(c) == 0:
-            break
-
-        # get the buffer from outside of this function
-        global serBuffer
-
-        # check if character is a delimeter
-        if c == '\r':
-            c = '' # don't want returns. chuck it
-
-        if c == '\n':
-            serBuffer += "\n" # add the newline to the buffer
-
-            #add the line to the TOP of the log
-            log.insert('0.0', serBuffer)
-            serBuffer = "" # empty the buffer
-        else:
-            serBuffer += c # add to the buffer
-
-    root.after(10, readSerial) # check serial again soon
+    t1 = threading.Thread(target=get_data)
+    t1.daemon = True
+    t1.start()
 
 
-# after initializing serial, an arduino may need a bit of time to reset
-root.after(100, readSerial)
+def get_data(): # Serial Read failed
+    global serial_object
+    global filter_data
 
-root.mainloop()
+    while 1:
+        try:
+            serial_data = serial_object.readline().strip('\n').strip('\r')
+            print(serial_data)
+            filter_data = serial_data.split(',')
+            print(filter_data)
+
+        except TypeError:
+            pass
+
+
+def update_gui():
+    global filter_data
+    global update_period
+
+    new = time.time()
+
+    while 1:
+        if serial_data:
+
+            # node1.insert(END, filter_data)
+            node1.insert(END, serial_data)
+            node1.insert(END, "\n")
+            try:
+                print("RX")
+
+
+            except:
+                pass
+
+            if time.time() - new >= update_period:
+                node1.delete("1.0", END)
+                new = time.time()
+
+
+def send():
+    send_data = data_entry.get()
+
+    if not send_data:
+        print("NULL Sent")
+    serial_object.write(str.encode(send_data))
+
+
+def disconnect():  # Successful release of port and exit
+    try:
+        serial_object.close()
+
+    except AttributeError:
+        print("Disconnected")
+
+    gui.quit()
+
+
+if __name__ == "__main__":
+    l0 = Label(text="Node 1 Serial monitor: ").place(x=15, y=5)
+    node1 = Text(width=59, height=13).place(x=15, y=25)
+    l01 = Label(text="Node 2 Serial monitor: ").place(x=600, y=5)
+    node2 = Text(width=59, height=13).place(x=600, y=25)
+
+    # threads
+    t2 = threading.Thread(target=update_gui)
+    t2.daemon = True
+    t2.start()
+
+    # Labels
+
+    l10 = Label(text="Cast a Serial Message:").place(x=15, y=225)  # N1
+    baud = Label(text="Baud").place(x=100, y=348)
+    port = Label(text="Port").place(x=200, y=348)
+    data5 = Label(text="Connection Configuration").place(x=15, y=290)
+
+    l11 = Label(text="Cast a Serial Message:").place(x=600, y=225)  # N2
+    baud1 = Label(text="Baud").place(x=700, y=348)
+    port1 = Label(text="Port").place(x=800, y=348)
+    data51 = Label(text="Connection Configuration").place(x=600, y=290)
+
+    # Entry
+    data_entry = Entry(width=65)  # N1
+    data_entry.place(x=80, y=253)
+    baud_entry = Entry(width=7)
+    baud_entry.place(x=100, y=365)
+    port_entry = Entry(width=7)
+    port_entry.place(x=200, y=365)
+
+    data_entry1 = Entry(width=65)  # N2
+    data_entry1.place(x=680, y=253)
+    baud_entry1 = Entry(width=7)
+    baud_entry1.place(x=700, y=365)
+    port_entry1 = Entry(width=7)
+    port_entry1.place(x=800, y=365)
+
+    # radio button
+    button_var = IntVar()  # N1
+    radio_1 = Radiobutton(text="Windows", variable=button_var, value=1).place(x=10, y=325)
+    radio_2 = Radiobutton(text="Linux", variable=button_var, value=2).place(x=110, y=325)
+
+    # button
+    button1 = Button(text="Send", command=send, width=6).place(x=15, y=250)
+    connect = Button(text="Connect", command=connect).place(x=15, y=360)
+    disconnect = Button(text="Disconnect", command=disconnect).place(x=15, y=390)
+
+    # mainloop
+    gui.geometry('1100x500')
+    gui.mainloop()
