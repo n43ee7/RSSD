@@ -10,7 +10,7 @@ filter_data = ''
 update_period = 5
 serial_object = None
 gui = Tk()
-gui.title("UTA Team Rover | Serial Profiler")
+gui.title("UTA RoverTeam | Serial Profiler")
 
 
 def connect():
