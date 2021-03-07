@@ -7,7 +7,7 @@ import serial
 
 serial_data = ''
 filter_data = ''
-update_period = 5
+update_period = 1
 serial_object = None
 gui = Tk()
 gui.title("UTA RoverTeam | Serial Profiler")

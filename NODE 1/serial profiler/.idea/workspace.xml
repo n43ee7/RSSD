@@ -29,7 +29,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../Anaconda3/envs/opencv-env" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.serial_profiler_stub">
     <configuration name="serial_profiler" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="serial profiler" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -51,8 +51,30 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="serial_profiler_stub" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="serial profiler" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/serial_profiler_stub.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.serial_profiler_stub" />
         <item itemvalue="Python.serial_profiler" />
       </list>
     </recent_temporary>
@@ -65,21 +87,21 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="586" y="198" key="#Inspections/0.0.1920.1040@0.0.1920.1040" timestamp="1615132447653" />
-    <state width="1899" height="227" key="GridCell.Tab.0.bottom" timestamp="1615135658380">
+    <state width="1899" height="227" key="GridCell.Tab.0.bottom" timestamp="1615136271243">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="227" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1615135658380" />
-    <state width="1899" height="227" key="GridCell.Tab.0.center" timestamp="1615135658380">
+    <state width="1899" height="227" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1615136271243" />
+    <state width="1899" height="227" key="GridCell.Tab.0.center" timestamp="1615136271243">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="227" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1615135658380" />
-    <state width="1899" height="227" key="GridCell.Tab.0.left" timestamp="1615135658380">
+    <state width="1899" height="227" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1615136271243" />
+    <state width="1899" height="227" key="GridCell.Tab.0.left" timestamp="1615136271243">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="227" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1615135658380" />
-    <state width="1899" height="227" key="GridCell.Tab.0.right" timestamp="1615135658380">
+    <state width="1899" height="227" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1615136271243" />
+    <state width="1899" height="227" key="GridCell.Tab.0.right" timestamp="1615136271243">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="227" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1615135658380" />
+    <state width="1899" height="227" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1615136271243" />
   </component>
 </project>
