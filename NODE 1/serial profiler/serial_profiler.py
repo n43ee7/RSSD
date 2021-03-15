@@ -1,4 +1,5 @@
 import time
+import os
 import threading
 from tkinter import *
 from tkinter import messagebox
@@ -12,6 +13,8 @@ update_period = 1
 serial_object = None
 gui = Tk()
 gui.title("UTA RoverTeam | Serial Profiler")
+
+os.system("python -m serial.tools.list_ports")
 
 
 def connect():
