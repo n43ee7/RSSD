@@ -65,10 +65,9 @@ def update_gui():
 
             node1.insert(END, serial_data)
             node1.insert(END, "\n")
-            node1.pack()
-            try:
-                print("RX NULL")
 
+            try:
+                print("")
 
             except:
                 pass
@@ -100,7 +99,8 @@ def disconnect():  # Successful release of port and exit
 
 if __name__ == "__main__":
     l0 = Label(text="Node 1 Serial monitor: ").place(x=15, y=5)
-    node1 = Text(gui, width=59, height=13).place(x=15, y=25)
+    node1 = Text(gui, width=59, height=13)
+    node1.place(x=15, y=25)
 
     l01 = Label(text="Node 2 Serial monitor: ").place(x=600, y=5)
     node2 = Text(width=59, height=13).place(x=600, y=25)
