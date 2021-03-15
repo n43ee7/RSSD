@@ -1,6 +1,7 @@
 import time
 import threading
 from tkinter import *
+from tkinter import messagebox
 from tkinter import ttk
 from tkinter.ttk import *
 import serial
@@ -27,12 +28,15 @@ def connect():
 
             except:
                 print("Cant Open Specified Port")
-
+                messagebox.showerror("Error", "Cannot open the specific port")
         elif version_ == 1:
             serial_object = serial.Serial('COM' + str(port), baud)
+        else:
+            messagebox.showerror("Error", "Select an operating system for establishing a connection")
 
     except ValueError:
         print("Enter Baud and Port")
+        messagebox.showerror("Error", "Enter an appropriate Baud rate and Port number")
         return
 
     t1 = threading.Thread(target=get_data)
@@ -82,6 +86,7 @@ def send():
 
     if not send_data:
         print("NULL Value not cast")
+        messagebox.showerror("Error", "Casting Null values is  depreciated")
 
     serial_object.write(str.encode(send_data))
     print("TX: " + send_data)
@@ -93,17 +98,13 @@ def disconnect():  # Successful release of port and exit
 
     except AttributeError:
         print("Disconnected")
-
     gui.quit()
 
 
 if __name__ == "__main__":
-    l0 = Label(text="Node 1 Serial monitor: ").place(x=15, y=5)
+    l0 = Label(text="Node Serial monitor: ").place(x=15, y=5)
     node1 = Text(gui, width=59, height=13)
     node1.place(x=15, y=25)
-
-    l01 = Label(text="Node 2 Serial monitor: ").place(x=600, y=5)
-    node2 = Text(width=59, height=13).place(x=600, y=25)
 
     # threads
     t2 = threading.Thread(target=update_gui)
@@ -112,17 +113,10 @@ if __name__ == "__main__":
 
     # Labels
 
-
-
     l10 = Label(text="Cast a Serial Message:").place(x=15, y=225)  # N1
     baud = Label(text="Baud").place(x=100, y=348)
     port = Label(text="Port").place(x=200, y=348)
     data5 = Label(text="Connection Configuration").place(x=15, y=290)
-
-    l11 = Label(text="Cast a Serial Message:").place(x=600, y=225)  # N2
-    baud1 = Label(text="Baud").place(x=700, y=348)
-    port1 = Label(text="Port").place(x=800, y=348)
-    data51 = Label(text="Connection Configuration").place(x=600, y=290)
 
     # Entry
     data_entry = Entry(width=65)  # N1
@@ -131,13 +125,6 @@ if __name__ == "__main__":
     baud_entry.place(x=100, y=365)
     port_entry = Entry(width=7)
     port_entry.place(x=200, y=365)
-
-    data_entry1 = Entry(width=65)  # N2
-    data_entry1.place(x=680, y=253)
-    baud_entry1 = Entry(width=7)
-    baud_entry1.place(x=700, y=365)
-    port_entry1 = Entry(width=7)
-    port_entry1.place(x=800, y=365)
 
     # radio button
     button_var = IntVar()  # N1
@@ -150,5 +137,5 @@ if __name__ == "__main__":
     disconnect = Button(text="Disconnect", command=disconnect).place(x=15, y=390)
 
     # mainloop
-    gui.geometry('1100x450')
+    gui.geometry('550x450')
     gui.mainloop()
