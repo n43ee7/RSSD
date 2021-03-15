@@ -29,7 +29,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../Anaconda3/envs/opencv-env" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager" selected="Python.serial_profiler_stub">
+  <component name="RunManager" selected="Python.serial_profiler">
     <configuration name="serial_profiler" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="serial profiler" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -74,8 +74,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.serial_profiler_stub" />
         <item itemvalue="Python.serial_profiler" />
+        <item itemvalue="Python.serial_profiler_stub" />
       </list>
     </recent_temporary>
   </component>
@@ -87,21 +87,29 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="586" y="198" key="#Inspections/0.0.1920.1040@0.0.1920.1040" timestamp="1615132447653" />
-    <state width="1899" height="227" key="GridCell.Tab.0.bottom" timestamp="1615136271243">
+    <state width="1899" height="255" key="GridCell.Tab.0.bottom" timestamp="1615826926588">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="227" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1615136271243" />
-    <state width="1899" height="227" key="GridCell.Tab.0.center" timestamp="1615136271243">
+    <state width="1899" height="255" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1615826926588" />
+    <state width="1899" height="255" key="GridCell.Tab.0.center" timestamp="1615826926588">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="227" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1615136271243" />
-    <state width="1899" height="227" key="GridCell.Tab.0.left" timestamp="1615136271243">
+    <state width="1899" height="255" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1615826926588" />
+    <state width="1899" height="255" key="GridCell.Tab.0.left" timestamp="1615826926588">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="227" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1615136271243" />
-    <state width="1899" height="227" key="GridCell.Tab.0.right" timestamp="1615136271243">
+    <state width="1899" height="255" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1615826926588" />
+    <state width="1899" height="255" key="GridCell.Tab.0.right" timestamp="1615826926588">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="227" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1615136271243" />
+    <state width="1899" height="255" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1615826926588" />
+    <state x="616" y="240" key="run.anything.popup" timestamp="1615469870610">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="616" y="240" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1615469870610" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1615826787761">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1615826787761" />
   </component>
 </project>

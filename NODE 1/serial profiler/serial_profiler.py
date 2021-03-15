@@ -15,7 +15,7 @@ gui.title("UTA RoverTeam | Serial Profiler")
 
 def connect():
     version_ = button_var.get()
-    print(version_)
+    print("Connection Sucess: " + str(version_))
     global serial_object
     port = port_entry.get()
     baud = baud_entry.get()
@@ -40,23 +40,22 @@ def connect():
     t1.start()
 
 
-def get_data(): # Serial Read failed
+def get_data():  # Serial Read failed
     global serial_object
-    global filter_data
+    global serial_data
 
-    while 1:
+    while (1):
         try:
-            serial_data = serial_object.readline().strip('\n').strip('\r')
-            print(serial_data)
-            filter_data = serial_data.split(',')
-            print(filter_data)
+            serial_data = str(serial_object.readline()).strip('\r').strip('\n')
+            print("RX: " + serial_data)
 
         except TypeError:
+            print("RX ERR")
             pass
 
 
 def update_gui():
-    global filter_data
+    global serial_data
     global update_period
 
     new = time.time()
@@ -64,11 +63,11 @@ def update_gui():
     while 1:
         if serial_data:
 
-            # node1.insert(END, filter_data)
             node1.insert(END, serial_data)
             node1.insert(END, "\n")
+            node1.pack()
             try:
-                print("RX")
+                print("RX NULL")
 
 
             except:
@@ -83,8 +82,10 @@ def send():
     send_data = data_entry.get()
 
     if not send_data:
-        print("NULL Sent")
+        print("NULL Value not cast")
+
     serial_object.write(str.encode(send_data))
+    print("TX: " + send_data)
 
 
 def disconnect():  # Successful release of port and exit
@@ -99,7 +100,8 @@ def disconnect():  # Successful release of port and exit
 
 if __name__ == "__main__":
     l0 = Label(text="Node 1 Serial monitor: ").place(x=15, y=5)
-    node1 = Text(width=59, height=13).place(x=15, y=25)
+    node1 = Text(gui, width=59, height=13).place(x=15, y=25)
+
     l01 = Label(text="Node 2 Serial monitor: ").place(x=600, y=5)
     node2 = Text(width=59, height=13).place(x=600, y=25)
 
@@ -109,6 +111,8 @@ if __name__ == "__main__":
     t2.start()
 
     # Labels
+
+
 
     l10 = Label(text="Cast a Serial Message:").place(x=15, y=225)  # N1
     baud = Label(text="Baud").place(x=100, y=348)
@@ -146,5 +150,5 @@ if __name__ == "__main__":
     disconnect = Button(text="Disconnect", command=disconnect).place(x=15, y=390)
 
     # mainloop
-    gui.geometry('1100x500')
+    gui.geometry('1100x450')
     gui.mainloop()
