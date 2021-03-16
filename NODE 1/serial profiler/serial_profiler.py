@@ -19,7 +19,7 @@ os.system("python -m serial.tools.list_ports")
 
 def connect():
     version_ = button_var.get()
-    print("Connection Sucess: " + str(version_))
+    print("Connection Success: " + str(version_))
     global serial_object
     port = port_entry.get()
     baud = baud_entry.get()
@@ -53,7 +53,9 @@ def get_data():  # Serial Read failed
 
     while (1):
         try:
-            serial_data = str(serial_object.readline()).strip('\r').strip('\n')
+            serial_data = str(serial_object.readline())
+            serial_data.strip('\r')
+            serial_data.strip('\n')
             print("RX: " + serial_data)
 
         except TypeError:
