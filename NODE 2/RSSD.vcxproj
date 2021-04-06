@@ -106,6 +106,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="stringer.h" />
     <ClInclude Include="__vm\.RSSD.vsarduino.h" />
   </ItemGroup>
   <PropertyGroup>
@@ -116,7 +117,7 @@
   </ImportGroup>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties arduino.upload.port="COM5" />
+      <UserProperties config.Release.customdebug_mega_atmega2560_debugger_type="none" arduino.upload.port="COM5" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

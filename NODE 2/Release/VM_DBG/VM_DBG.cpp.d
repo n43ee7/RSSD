@@ -1,6 +1,7 @@
-C:\Users\Nayyar\AppData\Local\Temp\VMBuilds\RSSD\mega_atmega2560\Release\RSSD.cpp.o: \
- C:\Users\Nayyar\AppData\Local\Temp\VMBuilds\RSSD\mega_atmega2560\Release\RSSD.cpp \
- D:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\cores\arduino/arduino.h \
+C:\Users\Nayyar\AppData\Local\Temp\VMBuilds\RSSD\mega_atmega2560\Release\VM_DBG\VM_DBG.cpp.o: \
+ d:\program\ files\visual\ studio\common7\ide\extensions\ex1pb14w.0vm\Micro\ Platforms\default\debuggers\VM_DBG\VM_DBG.cpp \
+ d:\program\ files\visual\ studio\common7\ide\extensions\ex1pb14w.0vm\Micro\ Platforms\default\debuggers\VM_DBG\VM_DBG.h \
+ D:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\cores\arduino/Arduino.h \
  D:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\cores\arduino/binary.h \
  D:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\cores\arduino/WCharacter.h \
  D:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\cores\arduino/WString.h \
@@ -10,6 +11,4 @@ C:\Users\Nayyar\AppData\Local\Temp\VMBuilds\RSSD\mega_atmega2560\Release\RSSD.cp
  D:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\cores\arduino/Printable.h \
  D:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\cores\arduino/USBAPI.h \
  D:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\cores\arduino/Arduino.h \
- D:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\variants\mega/pins_arduino.h \
- C:\Users\Nayyar\AppData\Local\Temp\VMBuilds\RSSD\mega_atmega2560\Release\stringer.h \
- D:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\cores\arduino/Arduino.h
+ D:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\variants\mega/pins_arduino.h
