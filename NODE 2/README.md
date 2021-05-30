@@ -1,5 +1,5 @@
 # RSSD
-UT RoverTeam Inter-node systems communication engine
+UT Rover Team Inter-node systems communication engine
 _________________________________________________
 ## Node 2 -> Arduino Mega 2560
 
