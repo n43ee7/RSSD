@@ -1,5 +1,5 @@
 # RSSD
-RoverMavs Internal Communication Engine
+UT Rover Team Internal Communication Engine
 _________________________________________________
 ## Node 1 -> Jetson TX-2
 

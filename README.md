@@ -1,5 +1,5 @@
 # RSSD
-RoverMavs Internal Communication Engine
+UT Rover Team 2021 Internal Communication Engine
 
 _________________________________________________
 ## The Existing repository contains code for the following Nodes
